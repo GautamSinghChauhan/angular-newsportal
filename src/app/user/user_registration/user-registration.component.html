@@ -1,0 +1,39 @@
+<div class="container">
+  <h2> User Registration Form</h2>
+    <form (ngSubmit)="registerUser()" [formGroup]="registrationForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" formControlName="username">
+       <div *ngIf="registrationForm.get('username')?.invalid && (registrationForm.get('username')?.dirty || registrationForm.get('username')?.touched)" class="text-danger">
+          <div *ngIf="registrationForm.get('username')?.errors?.['required']">Username is required</div>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email">
+        <div *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)" class="text-danger">
+          <div *ngIf="registrationForm.get('email')?.errors?.['email']">Invalid email format</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" formControlName="password">
+        <div *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)" class="text-danger">
+          <div *ngIf="registrationForm.get('password')?.errors?.['required']">Password is required</div>
+          <div *ngIf="registrationForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
+        <div *ngIf="registrationForm.get('confirmPassword')?.invalid && (registrationForm.get('confirmPassword')?.dirty || registrationForm.get('confirmPassword')?.touched)" class="text-danger">
+          <div *ngIf="registrationForm.get('confirmPassword')?.errors?.['required']">Confirm Password is required</div>
+          <div *ngIf="registrationForm.hasError('passwordMismatch')">Passwords must match</div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Register</button>
+    </form>
+    <div *ngIf="isFormSubmitted" class="text-success mt-3">Form submitted successfully for user!</div>
+  </div>
+  

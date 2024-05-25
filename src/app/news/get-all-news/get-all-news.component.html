@@ -1,0 +1,21 @@
+
+
+<div class="container p-5">
+  <h1 class="mb-5">Latest News</h1>
+  <div class="row" *ngIf="newsData">
+    <div class="col-md-12 mb-4" *ngFor="let newsItem of newsData[0].news">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ newsItem.title }}</h5>
+          <img [src]="newsItem.image" class="card-img-top mb-4" alt="News Image" style="width: 200px;">
+  
+          <p class="card-text">{{ newsItem.content }}</p>
+          <p class="card-text">Author: {{ newsItem.author }}</p>
+          <p class="card-text">Date: {{ newsItem.date | date:'medium' }}</p>
+          <button class="btn btn-primary" (click)="onUpdateNews(newsItem._id)">Update News</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
