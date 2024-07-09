@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { UserRegistrationComponent } from './user/user_registration/user-registration.component';
 import { GetAllNewsComponent } from './news/get-all-news/get-all-news.component';
 import { UpdateNewsComponent } from './news/update-news/update-news.component';
+import { TestimonialsComponent } from './testimonials/testimonials.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,8 @@ const routes: Routes = [
   {path: 'header', component: HeaderComponent},
   {path: 'user-registration', component: UserRegistrationComponent},
   { path: 'update-news/:id', component: UpdateNewsComponent },
+  { path: 'testimonials', component: TestimonialsComponent },
+
 
 ];
 

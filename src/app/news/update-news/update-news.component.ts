@@ -31,9 +31,15 @@ export class UpdateNewsComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.newsId = id;
-      this.newsService.getNewsById(this.newsId).subscribe((newsItem) => {
-        this.updateNewsForm.patchValue(newsItem);
-      });
+      this.newsService.getNewsById(this.newsId).subscribe(
+        (response) => {
+          const newsItem = response.news; // Adjust based on your API response structure
+          this.updateNewsForm.patchValue(newsItem);
+        },
+        (error) => {
+          console.error('Error fetching news item:', error);
+        }
+      );
     } else {
       console.error('No news ID found in route parameters');
       // Handle the case when id is null (e.g., navigate away, show an error message, etc.)
@@ -52,5 +58,15 @@ export class UpdateNewsComponent implements OnInit {
       );
     }
   }
-  
+
+  onDelete(): void {
+    this.newsService.deleteNews(this.newsId).subscribe(
+      () => {
+        this.router.navigate(['/get-all-news']);
+      },
+      (error) => {
+        console.error('Error deleting news:', error);
+      }
+    );
+  }
 }

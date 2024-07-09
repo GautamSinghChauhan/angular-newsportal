@@ -21,15 +21,22 @@ export class NewsService {
   addNews(newsData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, newsData);
   }
+  // getNewsById(id: string): Observable<any> {
+  //   const url = `${this.apiUrl}/${id}`;
+  //   return this.http.get<any>(url);
+  // }
   getNewsById(id: string): Observable<any> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.get<any>(url);
+    return this.http.get(`${this.apiUrl}/${id}`);
   }
 
   // Method to update news by ID
   updateNews(id: string, newsData: any): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.put<any>(url, newsData);
+  }
+
+   deleteNews(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
   
 }

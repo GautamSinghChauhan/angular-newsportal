@@ -13,6 +13,7 @@ import { UserRegistrationComponent } from './user/user_registration/user-registr
 import { FormsModule } from '@angular/forms';
 import { GetAllNewsComponent } from './news/get-all-news/get-all-news.component';
 import { UpdateNewsComponent } from './news/update-news/update-news.component';
+import { TestimonialsComponent } from './testimonials/testimonials.component';
 
 
 
@@ -26,6 +27,7 @@ import { UpdateNewsComponent } from './news/update-news/update-news.component';
     UserRegistrationComponent,
     GetAllNewsComponent,
     UpdateNewsComponent,
+    TestimonialsComponent
   ],
   imports: [
     BrowserModule,
