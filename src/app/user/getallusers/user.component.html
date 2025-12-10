@@ -1,6 +1,29 @@
 <div class="container mt-5">
-  <button routerLink="/user-registration" class="btn btn-primary mb-3 float-right bg-success">User Registration</button>
+  <div class="row align-items-center">
+
+    <!-- Search Input -->
+    <div class="col-md-8">
+      <input 
+        type="text" 
+        class="form-control"
+        placeholder="Search user..."
+        [(ngModel)]="searchQuery"
+        (keyup)="searchUsers()"
+      />
+    </div>
+
+    <!-- User Registration Button -->
+    <div class="col-md-4 text-right">
+      <button 
+        routerLink="/user-registration" 
+        class="btn btn-success">
+        User Registration
+      </button>
+    </div>
+
+  </div>
 </div>
+
 <div class="container pt-5 align-items-center">
   <h2 class="mb-4">All Users</h2> 
   <ul class="list-group mb-5">

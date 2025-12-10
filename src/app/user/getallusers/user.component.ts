@@ -12,6 +12,9 @@ export class UserComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 5;
 
+  searchQuery: string = '';
+  filteredUsers: any[] = [];
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -23,6 +26,7 @@ export class UserComponent implements OnInit {
       .subscribe(
         (response) => {
           this.users = response.users.reverse();
+          this.filteredUsers = [...this.users];
           this.setPage(1);
         },
         (error) => {
@@ -31,10 +35,23 @@ export class UserComponent implements OnInit {
       );
   }
 
+ searchUsers(): void {
+  const q = this.searchQuery.toLowerCase();
+
+  this.filteredUsers = this.users.filter(user =>
+    user.username.toLowerCase().includes(q) ||
+    user.email.toLowerCase().includes(q)
+  );
+
+  this.setPage(1); 
+}
+
+
   setPage(page: number): void {
     const startIndex = (page - 1) * this.pageSize;
-    const endIndex = Math.min(startIndex + this.pageSize, this.users.length);
-    this.pagedUsers = this.users.slice(startIndex, endIndex);
+    // const endIndex = Math.min(startIndex + this.pageSize, this.users.length);
+    // this.pagedUsers = this.users.slice(startIndex, endIndex);
+    this.pagedUsers = this.filteredUsers.slice(startIndex, startIndex + this.pageSize);
     this.currentPage = page;
     console.log(this.pagedUsers);
   }
